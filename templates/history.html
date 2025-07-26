@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="history-body">
+
+    <div class="container history-container">
+        <h2><i class="fa-solid fa-rotate-left"></i> Summary History</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-calendar-days"></i> Date</th>
+                    <th><i class="fa-solid fa-align-left"></i> Summary</th>
+                    <th><i class="fa-solid fa-face-smile"></i> Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if history %}
+                    {% for row in history %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>
+                                {% if row[2] == 'POSITIVE' %}
+                                    <span style="color: green;"><i class="fa-solid fa-face-smile"></i> {{ row[2] }}</span>
+                                {% elif row[2] == 'NEGATIVE' %}
+                                    <span style="color: red;"><i class="fa-solid fa-face-frown"></i> {{ row[2] }}</span>
+                                {% else %}
+                                    <span style="color: orange;"><i class="fa-solid fa-face-meh"></i> {{ row[2] }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan="3">No history available yet.</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('index') }}" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Summarizer</a>
+    </div>
+
+</body>
+</html>

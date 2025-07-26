@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Review Summarizer - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('{{ url_for('static', filename='bg.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+
+        .home-container {
+            background: rgba(0, 0, 0, 0.7);
+            margin: 80px auto;
+            padding: 50px 30px;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #f1c40f;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+        }
+
+        .check-btn {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff9966, #ff5e62);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .check-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .icons {
+            font-size: 50px;
+            margin: 20px;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="home-container">
+        <h1><i class="fa-solid fa-brain"></i> Smart Review Summarizer</h1>
+        <p>
+            Welcome to the Smart Review Summarizer! <br>
+            This tool helps you <b>summarize product reviews</b> and detect their <b>sentiment</b> instantly.<br><br>
+            It uses Natural Language Processing to make long customer reviews short and meaningful.
+        </p>
+
+        <div>
+            <i class="fa-solid fa-robot icons"></i>
+            <i class="fa-solid fa-file-lines icons"></i>
+            <i class="fa-solid fa-face-smile icons"></i>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="check-btn"><i class="fa-solid fa-play"></i> Check Now</a>
+    </div>
+
+</body>
+</html>

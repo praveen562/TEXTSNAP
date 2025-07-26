@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Review Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<a href="{{ url_for('home') }}" class="home-top-btn"><i class="fa-solid fa-house"></i> Home</a>
+
+<div class="container">
+
+    <h2><i class="fa-solid fa-pen-to-square"></i> Product Review Summarizer</h2>
+
+    <form method="POST">
+        <div class="form-group">
+            <textarea name="review" rows="8" placeholder="Write your product review here..." required></textarea>
+            <div class="btn-group">
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Summarize</button>
+            </div>
+        </div>
+    </form>
+
+    {% if summary %}
+    <div class="output-section">
+
+        <h3><i class="fa-solid fa-align-left"></i> Summary:</h3>
+        <p>{{ summary }}</p>
+
+        <h3><i class="fa-solid fa-face-smile"></i> Sentiment:</h3>
+        {% if sentiment == 'POSITIVE' %}
+            <p class="sentiment-positive"><i class="fa-solid fa-face-smile-beam"></i> {{ sentiment }}</p>
+        {% elif sentiment == 'NEGATIVE' %}
+            <p class="sentiment-negative"><i class="fa-solid fa-face-frown"></i> {{ sentiment }}</p>
+        {% else %}
+            <p class="sentiment-neutral"><i class="fa-solid fa-face-meh"></i> {{ sentiment }}</p>
+        {% endif %}
+
+        <form method="POST" action="/download" class="download-btn">
+            <input type="hidden" name="summary" value="{{ summary }}">
+            <button type="submit"><i class="fa-solid fa-download"></i> Download Summary</button>
+        </form>
+
+    </div>
+    {% endif %}
+
+    <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> View Summary History</a>
+
+</div>
+
+</body>
+</html>
